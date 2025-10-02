@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ClientWidget</class>
+ <widget class="QWidget" name="ClientWidget">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelHost"><property name="text"><string>Server IP:</string></property></widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="hostEdit"><property name="text"><string>127.0.0.1</string></property></widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelPort"><property name="text"><string>Port:</string></property></widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="portEdit"><property name="text"><string>9000</string></property></widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelKey"><property name="text"><string>Key:</string></property></widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="keyEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="fileLayout">
+     <item>
+      <widget class="QLabel" name="fileLabel"><property name="text"><string>No file selected</string></property></widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectButton"><property name="text"><string>Select File</string></property></widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sendButton"><property name="text"><string>Send File</string></property></widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressBar"/>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="log">
+     <property name="readOnly"><bool>true</bool></property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

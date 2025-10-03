@@ -16,6 +16,8 @@ public:
 
 private slots:
     void onStartClicked();
+    void onStopClicked();
+    void onSelectFolderClicked();
     void onNewConnection();
     void appendLog(const QString &msg);
 
@@ -23,4 +25,5 @@ private:
     Ui::ServerWidget *ui = nullptr;
     QTcpServer *m_server = nullptr;
     QByteArray m_key;
+    QString m_saveFolder;
 };

@@ -11,6 +11,7 @@ class TransferSession : public QObject {
 public:
     explicit TransferSession(QTcpSocket *socket, const QByteArray &key, QObject *parent = nullptr);
     ~TransferSession() override;
+    void setSaveFolder(const QString &folder);
 
 signals:
     void logMessage(const QString &msg);
@@ -32,4 +33,5 @@ private:
     qint64 m_fileSize = 0;
     qint64 m_bytesReceived = 0;
     QByteArray m_buffer;
+    QString m_saveFolder;
 };

@@ -3,11 +3,16 @@
 
 #include <QDir>
 #include <QDataStream>
+#include <QFileDialog>
 
 TransferSession::TransferSession(QTcpSocket *socket, const QByteArray &key, QObject *parent)
     : QObject(parent), m_socket(socket), m_key(key) {
     connect(m_socket, &QTcpSocket::readyRead, this, &TransferSession::onReadyRead);
     connect(m_socket, &QTcpSocket::disconnected, this, &TransferSession::onDisconnected);
+}
+
+void TransferSession::setSaveFolder(const QString &folder) {
+    m_saveFolder = folder;
 }
 
 TransferSession::~TransferSession() {
@@ -49,9 +54,24 @@ void TransferSession::onReadyRead() {
             QByteArray fname = m_socket->read(m_filenameLen);
             m_filename = QString::fromUtf8(fname);
             // Prepare output file
-            QDir outDir(QDir::currentPath());
-            if (!outDir.exists("received")) outDir.mkdir("received");
-            QString outPath = outDir.filePath(QString("received") + QDir::separator() + m_filename);
+            QString outPath;
+            if (!m_saveFolder.isEmpty()) {
+                QDir outDir(m_saveFolder);
+                outPath = outDir.filePath(m_filename);
+            } else {
+                // Ask user where to save this file (Save As)
+                QString defaultDir = QDir::currentPath();
+                QString selected = QFileDialog::getSaveFileName(nullptr, "Save received file as", QDir(defaultDir).filePath(m_filename));
+                if (selected.isEmpty()) {
+                    emit logMessage("Save cancelled by user; closing connection");
+                    m_socket->disconnectFromHost();
+                    return;
+                }
+                outPath = selected;
+            }
+            QDir parentDir = QFileInfo(outPath).absoluteDir();
+            if (!parentDir.exists()) parentDir.mkpath(".");
+            m_outFile = new QFile(outPath);
             m_outFile = new QFile(outPath);
             if (!m_outFile->open(QIODevice::WriteOnly)) {
                 emit logMessage(QStringLiteral("Failed to open output file: %1").arg(outPath));

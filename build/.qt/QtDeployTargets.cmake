@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_SecureFileTransfer_FILE /home/pinak/git/securefiletransfer/build/SecureFileTransfer)
+set(__QT_DEPLOY_TARGET_SecureFileTransfer_TYPE EXECUTABLE)

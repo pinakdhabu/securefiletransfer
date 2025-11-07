@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/pinak/git/securefiletransfer/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

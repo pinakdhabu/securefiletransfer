@@ -1,0 +1,5 @@
+/home/pinak/git/securefiletransfer/build/CMakeFiles/SecureFileTransfer.dir
+/home/pinak/git/securefiletransfer/build/CMakeFiles/edit_cache.dir
+/home/pinak/git/securefiletransfer/build/CMakeFiles/rebuild_cache.dir
+/home/pinak/git/securefiletransfer/build/CMakeFiles/SecureFileTransfer_autogen_timestamp_deps.dir
+/home/pinak/git/securefiletransfer/build/CMakeFiles/SecureFileTransfer_autogen.dir
